@@ -66,13 +66,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <form action="" method="post">
+        <form action="../Reports/reports.php" method="post">
             <div class="modal-body">
                 <a class="mt-2 mb-2 d-block">
-                    Data inicial: <input type="datetime-local" name="inicial-Date">
+                    Data inicial: <input type="datetime-local" name="inicial-Date" required>
                 </a> 
                 <a class="mt-2 mb-2 d-block">
-                    Data final: <input type="datetime-local" name="final-Date">
+                    Data final: <input type="datetime-local" name="final-Date" required>
                 </a> 
             </div>
             <div class="modal-footer">
