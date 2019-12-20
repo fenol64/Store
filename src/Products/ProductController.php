@@ -20,10 +20,10 @@
     function selectProduct(){
 
         echo"<tr class=\"table-products\">
-            <th class=\"p-3\">ID</th>
+            <th class=\"p-3\">#</th>
             <th>Nome do Produto</th>
             <th>Valor do produto</th>
-            <th></th>
+            <th class=\"text-right pr-5\">Editar | Deletar</th>
         </tr>";
  
 
@@ -94,9 +94,6 @@
         
 
     }
-
-
-
     if ($_POST["type"] == "select") {
         selectProduct();
     }elseif ($_POST["type"] == "add") {

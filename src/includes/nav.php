@@ -1,4 +1,7 @@
-
+<?php
+    session_start();
+    include_once '../includes/conection.php';
+?>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -40,7 +43,20 @@
                     <a class="nav-link text-white" data-toggle="modal" data-target="#exampleModal">Relatório</a>
                 </li>
             </ul>
-            <a class="nav-link Start-Stop text-white btn btn-outline-light" href="#">Iniciar Vendas</a>
+
+
+
+
+
+
+
+
+            <a class="nav-link Start-Stop text-white btn btn-outline-light mr-2" id="start-button">
+                Iniciar Vendas
+            </a>
+            <a class="nav-link Start-Stop text-white btn btn-outline-light" id="stop-button">
+                Parar Vendas
+            </a>
             <a href="" class="nav-link text-danger">Sair</a>
         </div>
     </nav>
@@ -50,6 +66,7 @@
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../js/Sells.js"></script>
     <script>
         feather.replace()
     </script>
