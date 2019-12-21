@@ -15,7 +15,7 @@
       // kypress functions
       var options = {
         N: () => {
-          location.href = "../Sell/Sell.php"
+          location.href = "../orders/order.php"
         },
 
         R: () => {

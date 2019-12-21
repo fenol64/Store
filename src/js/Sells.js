@@ -1,5 +1,5 @@
-var startElement =  document.getElementById('start-button');
-var stopElement =  document.getElementById('stop-button');
+var startElement =  document.getElementById('start-button')
+var stopElement =  document.getElementById('stop-button')
 
 startElement.addEventListener('click', () => {
 

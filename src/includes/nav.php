@@ -11,7 +11,6 @@
   </head>
   <body>
 
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Batata do Cheffi</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +27,7 @@
                         Vendas
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../Sell/Sell.php">
+                        <a class="dropdown-item" href="../orders/order.php">
                             <i data-feather="shopping-cart" class="mr-3"></i>
                             Nova Venda
                         </a>
@@ -43,13 +42,6 @@
                     <a class="nav-link text-white" data-toggle="modal" data-target="#exampleModal">Relatório</a>
                 </li>
             </ul>
-
-
-
-
-
-
-
 
             <a class="nav-link Start-Stop text-white btn btn-outline-light mr-2" id="start-button">
                 Iniciar Vendas
