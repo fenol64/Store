@@ -49,7 +49,7 @@
             <a class="nav-link Start-Stop text-white btn btn-outline-light" id="stop-button">
                 Parar Vendas
             </a>
-            <a href="" class="nav-link text-danger">Sair</a>
+            <a href="../login/logout.php" class="nav-link text-danger">Sair</a>
         </div>
     </nav>
 

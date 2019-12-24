@@ -13,6 +13,9 @@ startElement.addEventListener('click', () => {
         startElement.classList.add('disabled')
         stopElement.classList.remove('disabled')
     });
+
+    location.reload();
+
 })
 
 
@@ -28,6 +31,9 @@ stopElement.addEventListener('click', () => {
         startElement.classList.remove('disabled')
         stopElement.classList.add('disabled')
     });
+
+    location.reload();
+    
 })
 
 let data = {

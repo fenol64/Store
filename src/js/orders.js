@@ -5,12 +5,13 @@ totalElement = document.querySelector('#total')
 total = 0.00
 cart = document.querySelector('#cart')
 
-function render (product) {
+function render (product, id_order) {
     //converting data
     let valorProduct = parseFloat(product[0]["value_product"])
     total += valorProduct
-    //insert to HTML
 
+    updatetotal(total, id_order)
+    //insert to HTML
     totalElement.value = total
     let BoxElement =  document.createElement('div')
     BoxElement.setAttribute('class', 'p-3 pr-5 border m-3')
@@ -31,31 +32,36 @@ function render (product) {
 
 }
 
-function addtocart(id, id_order){
-
+async function addtocart(id, id_order){
+    
     let data = {
         type: "insert",
         id,
         id_order
     }
 
-     $.post( "./orderController.php", data , res => {  
+     await $.post( "./orderController.php", data , res => {  
+        console.log(res)
         data = JSON.parse(res)
-        render(data)
-        updatetotal(data, id_order)
+        
+        render(data, id_order)
     });
+
+
 
 }
 
-function updatetotal (id_order) {
+function updatetotal (total, id_order) {
 
     let data = {
         type: "updatetotal",
-        total: total,
+        total,
         id_order
     }
 
-     $.post( "./orderController.php", data);
+     $.post( "./orderController.php", data, res => {
+        console.log(res)
+     });
 }
 
 function cancelorder(id_order) {
@@ -80,7 +86,7 @@ function submitorder(id_order) {
         id_order
     }
 
-    $.post( "./orderController.php", data, () => {
+    $.post( "./orderController.php", data, res => {
         alert('Pedido feito com sucesso!')
         location.href = "../index/index.php"
     });       

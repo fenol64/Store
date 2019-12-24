@@ -91,9 +91,9 @@
         }else{
             echo "erro!";
         }
-        
-
     }
+
+    
     if ($_POST["type"] == "select") {
         selectProduct();
     }elseif ($_POST["type"] == "add") {
