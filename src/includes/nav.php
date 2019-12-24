@@ -1,5 +1,4 @@
 <?php
-    session_start();
     include_once '../includes/conection.php';
 ?>
     <!-- Required meta tags -->
@@ -31,16 +30,28 @@
                             <i data-feather="shopping-cart" class="mr-3"></i>
                             Nova Venda
                         </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="../Products/Products.php">
-                            <i data-feather="list" class="mr-3"></i> 
-                            Produtos
-                        </a>
+                        <?php 
+                            if ($_SESSION['condicao'] == "0"):
+                        ?>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="../Products/Products.php">
+                                <i data-feather="list" class="mr-3"></i> 
+                                Produtos
+                            </a>
+                        <?php
+                            endif;
+                        ?>
                     </div>
                 </li>
+                <?php 
+                    if ($_SESSION['condicao'] == "0"):
+                ?>
                 <li class="nav-item">
                     <a class="nav-link text-white" data-toggle="modal" data-target="#exampleModal">Relatório</a>
                 </li>
+                <?php
+                    endif;
+                ?>
             </ul>
 
             <a class="nav-link Start-Stop text-white btn btn-outline-light mr-2" id="start-button">

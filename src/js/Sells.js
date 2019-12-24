@@ -41,9 +41,7 @@ let data = {
 }
 
 $.post( "./../sells/SellsController.php", data , res => {
-    data = JSON.parse(res);
-
-    console.log(data['status'])
+    data = JSON.parse(res)
 
     if (data['status'] === 'aberto') {
         startElement.classList.add('disabled')

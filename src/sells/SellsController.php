@@ -10,11 +10,10 @@
         $sql = "SELECT status FROM isopened WHERE id_isopened = (SELECT MAX(id_isopened) FROM isopened)";
         $stmt = $con->prepare($sql);
         $stmt->execute();
+        $result = array('status' => 'fechado');
     
-        if ($stmt->rowCount() > 0) {
+        if ($stmt->rowCount() != 0) {
             $result = $stmt->fetch();
-        }else{
-            $result = array( '0' => 'fechado' );
         }
         
 

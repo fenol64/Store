@@ -19,7 +19,7 @@
         $resultado = $sth->fetchAll();
 
         if(count($resultado) != 0){
-            $_SESSION['condicao'] = $resultado['condicao'];
+            $_SESSION['condicao'] = $resultado[0]['condicao'];
             header("Location: ../index/index.php");
         //Não foi encontrado um usuario na tabela usuário com os mesmos dados digitado no formulário
         //redireciona o usuario para a página de login
