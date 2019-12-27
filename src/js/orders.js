@@ -4,6 +4,7 @@ var totalElement, total, cart
 totalElement = document.querySelector('#total')
 total = 0.00
 cart = document.querySelector('#cart')
+pay = document.getElementById('totalordertopay');
 
 function render (product, id_order) {
     //converting data
@@ -13,6 +14,7 @@ function render (product, id_order) {
     updatetotal(total, id_order)
     //insert to HTML
     totalElement.value = total
+    pay.value = total
     let BoxElement =  document.createElement('div')
     BoxElement.setAttribute('class', 'p-3 pr-5 border m-3')
     BoxElement.style.width = '100%'

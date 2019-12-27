@@ -28,13 +28,7 @@
             $inicial = $result[0]['time_inicial'];
             $final = $result[0]['time_final'];
 
-            $sql2 = "SELECT * FROM orders WHERE ";
-            
-            if ($final == "0000-00-00 00:00:00") {
-              $sql2 = $sql2. " day_inserted >= '$inicial'";
-            }else{
-              $sql = $sql2. " day_inserted >= '$inicial' AND day_inserted < '$final'";
-            }
+            $sql2 = "SELECT * FROM orders WHERE  day_inserted >= '$inicial'";
             
             $execquery = $con->prepare($sql2);
             $execquery->execute();
@@ -79,7 +73,7 @@
             echo "</table>
             
             <h5 class=\"text-right mr-5 mt-3\">
-            Total: ". number_format($total, 2, ',', ' ')."
+            Total:". number_format($total, 2, ',', ' ')."
           </h5>";
           }else{
             echo "<div class=\"centers h2\">Inicie as vendas para começar!</div>";

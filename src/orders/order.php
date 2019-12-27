@@ -6,15 +6,13 @@
     $con = getConnection();
 
     $idorder = rand(10000, 100000);
-
+    $_SESSION["id_order"] = $idorder;
 
     $sql = "INSERT INTO orders VALUES ('$idorder', default, default, default)";
     
     if ($con->exec($sql)) {
         // foi
     }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +71,10 @@
             </div>
             <div class="w-100"></div>
             <div class="col w-100">
-                <button class="btn btn-success w-100  mt-4" onclick="submitorder(<?=$idorder?>)"> Fazer pedido! </button>
+                <form action="payment.php" method="post">
+                    <input type="hidden"  name="totalordertopay" id="totalordertopay">
+                    <button type="submit" class="btn btn-success w-100  mt-4"> PAGAMENTO </button>
+                </form>
             </div>
         </div>
     </div>
