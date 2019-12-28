@@ -53,7 +53,7 @@
                 </div>
                 <div class="w-100"></div>
                 <div class="col w-100">
-                <button class="btn btn-success w-100 mt-4" id="btn-submit" onclick="submitorder(<?=$id?>)"> Fazer pedido </button>
+                <button class="btn btn-success w-100 mt-4"  id="btn-submit" onclick="submitorder(<?=$id?>)"> Fazer pedido </button>
                 </div>
             </div>
         </div>
@@ -71,13 +71,13 @@
                     </div>
                     <div class="modal-body">
                         Digite o valor:
-                        <input type="text" id="cardPay">
+                        <input type="text" id="cartao">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="close mr-3" data-dismiss="modal">
                             <i data-feather="x"></i>
                         </button>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="addtomethods(<?=$id?>, 'cartao')">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="addtomethods('cartao')">
                             <i data-feather="check"></i>
                         </button>
                     </div>
@@ -97,13 +97,13 @@
                     </div>
                     <div class="modal-body">
                         Digite o valor:
-                        <input type="text" id="moneyPay">
+                        <input type="text" id="dinheiro">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="close mr-3" data-dismiss="modal">
                             <i data-feather="x"></i>
                         </button>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="addtomethods(<?=$id?>, 'dinheiro')">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="addtomethods('dinheiro')">
                             <i data-feather="check"></i>
                         </button>
                     </div>

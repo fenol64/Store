@@ -1,32 +1,52 @@
-var btnElement, totaltopayElement, topay, payElement, btnCard, btnMoney, method
+var btnElement, totaltopayElement, topay, payElement, btnCard, btnMoney
 
 btnElement = document.getElementById('btn-submit')
+// div
 payElement = document.getElementById('payed')
+// total input 
 totaltopayElement = document.getElementById('total')
+//modals
 btnCard = document.querySelector(' #card ')
 btnMoney = document.querySelector(' #money ')
+// first total
 topay = parseFloat(totaltopayElement.value)
 
-function render() {
-    
-    total += valorProduct
+btnElement.setAttribute('disabled', 'true')
 
-    //insert to HTML
-    totalElement.value = total
-    pay.value = total
+function render(data) {
+
+    let amount = totaltopayElement.value
+
+    if (data.method === 'cartao') {
+        data.method = 'Cartão'
+    }else{
+        data.method = 'Dinheiro'
+    }
+
+    let paid = amount - parseFloat(data.value)
+
+    totaltopayElement.value = paid.toFixed(2)
+
+    if (totaltopayElement.value > 0) {
+        btnElement.setAttribute('disabled', 'true')
+    }else{
+        btnElement.removeAttribute('disabled')
+    }
+
+    
     let BoxElement =  document.createElement('div')
     BoxElement.setAttribute('class', 'p-3 pr-5 border m-3')
     BoxElement.style.width = '100%'
-    let productText = document.createTextNode()
+    let productText = document.createTextNode(data.method)
 
     let spanElement =  document.createElement('span')
     spanElement.setAttribute('class', 'text-right')
     spanElement.setAttribute('style', 'margin-left: 83.7%')
-    let productvalue = document.createTextNode()
+    let productvalue = document.createTextNode(data.value)
 
 
     BoxElement.appendChild(productText)
-    cart.appendChild(BoxElement);
+    payElement.appendChild(BoxElement);
 
     BoxElement.appendChild(spanElement)
     spanElement.appendChild(productvalue)
@@ -34,10 +54,15 @@ function render() {
 }
 
 
-function addtomethods(id, method) {
+function addtomethods(method) {
     
-    if (method === 'cartao') {
-        
+    let data = {
+        method,
+        valuePaid: document.getElementById(method).value
     }
+
+    $.post('paymentController.php', data, res => {
+        render(JSON.parse(res))
+    })
 
 }
