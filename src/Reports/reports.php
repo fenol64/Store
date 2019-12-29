@@ -131,7 +131,5 @@
       <td></td>
     </tr>
   </table>
-
-  <button class="btn btn-primary mt-5" onclick="Window.print()">Imprimir</button>
 </body>
 </html>
