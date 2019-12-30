@@ -5,10 +5,20 @@
 
     $con = getConnection();
 
+
+    $sql = "SELECT id_isopened FROM isopened WHERE id_isopened = (SELECT MAX(id_isopened) FROM isopened)";
+    $stmt = $con->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetch();
+
+    $_SESSION["time"] = $result[0];
+
+    $con = getConnection();
+
     $idorder = rand(10000, 100000);
     $_SESSION["id_order"] = $idorder;
 
-    $sql = "INSERT INTO orders VALUES ('$idorder', default, default, default)";
+    $sql = "INSERT INTO orders VALUES ('$idorder', default, default, '".$result[0]."')";
     
     if ($con->exec($sql)) {
         // foi

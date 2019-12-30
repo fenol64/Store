@@ -1,72 +1,64 @@
-<?php
-
-    include_once './../includes/conection.php';
 
 
-    function status(){
-        $con = getConnection();
+
+    <?php
+
+        include_once './../includes/conection.php';
+
+        function status(){
+            $con = getConnection();
 
 
-        $sql = "SELECT status FROM isopened WHERE id_isopened = (SELECT MAX(id_isopened) FROM isopened)";
-        $stmt = $con->prepare($sql);
-        $stmt->execute();
-        $result = array('status' => 'fechado');
-    
-        if ($stmt->rowCount() != 0) {
-            $result = $stmt->fetch();
-        }
+            $sql = "SELECT status FROM isopened WHERE id_isopened = (SELECT MAX(id_isopened) FROM isopened)";
+            $stmt = $con->prepare($sql);
+            $stmt->execute();
+            $result = array('status' => 'fechado');
         
+            if ($stmt->rowCount() != 0) {
+                $result = $stmt->fetch();
+            }
+            
 
-        echo json_encode($result);
-    }
-
-
-
-
-    function start(){
-        $con = getConnection();
-
-        $sql = "INSERT INTO isopened VALUES (default, default, default, default)";
-
-        if ($con->exec($sql)) {
-            echo "Adicionado com Sucesso!";
-        }else{
-            echo "erro";
+            echo json_encode($result);
         }
 
-        $sql = "SELECT * FROM isopened WHERE id_isopened = (SELECT MAX(id_isopened) FROM isopened)";
-        $stmt = $con->prepare($sql);
-        $stmt->execute();
-    }
+        function start(){
+            $con = getConnection();
 
+            $sql = "INSERT INTO isopened VALUES (default, default, default, default)";
 
-    function stop(){
-        $con = getConnection();
+            if ($con->exec($sql)) {
+                echo "Adicionado com Sucesso!";
+            }else{
+                echo "erro";
+            }
 
-        $sql = "UPDATE isopened SET time_final = current_timestamp, status = 'fechado' WHERE 1";
-
-        if ($con->exec($sql)) {
-            echo "Atualizado com Sucesso!";
-        }else{
-            echo "erro";
+            $sql = "SELECT * FROM isopened WHERE id_isopened = (SELECT MAX(id_isopened) FROM isopened)";
+            $stmt = $con->prepare($sql);
+            $stmt->execute();
         }
-    }
 
 
-    $open = $_POST["open"];
-   
-    if ($open == 'aberto') {
-        start();
-    }elseif ($open == 'fechado') {
-        stop();
-    }else{
-        status();
-    }
+        function stop(){
+            $con = getConnection();
+
+            $sql = "UPDATE isopened SET time_final = current_timestamp, status = 'fechado' WHERE 1";
+
+            if ($con->exec($sql)) {
+                echo "Atualizado com Sucesso!";
+            }else{
+                echo "erro";
+            }
+        }
 
 
-
-
-
-
-
-?>
+        $open = $_POST["open"];
+    
+        if ($open == 'aberto') {
+            start();
+        }elseif ($open == 'fechado') {
+            stop();
+        }else{
+            status();
+        }
+    ?>

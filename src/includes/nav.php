@@ -1,5 +1,13 @@
 <?php
     include_once '../includes/conection.php';
+
+    $con = getConnection();
+
+    $sql = "SELECT id_isopened, time_inicial FROM isopened";
+    $stmt = $con->prepare($sql);
+    $stmt->execute();
+
+    $resultado = $stmt->fetchAll();
 ?>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -53,7 +61,6 @@
                     endif;
                 ?>
             </ul>
-
             <a class="nav-link Start-Stop text-white btn btn-outline-light mr-2" id="start-button">
                 Iniciar Vendas
             </a>
@@ -73,15 +80,12 @@
     <script>
         feather.replace()
     </script>
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Relário</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Relatório</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -89,11 +93,16 @@
         <form action="../Reports/reports.php" method="post">
             <div class="modal-body">
                 <a class="mt-2 mb-2 d-block">
-                    Data inicial: <input type="datetime-local" name="inicial-Date" required>
-                </a> 
-                <a class="mt-2 mb-2 d-block">
-                    Data final: <input type="datetime-local" name="final-Date" required>
-                </a> 
+                    Fechamento do dia: <select name="dateReport" id="dateReport" class="w-100">
+                        <option value="">Escolha uma data</option>
+                        <?php
+                        foreach ($resultado as $key) {
+                            $data = explode(" ", $key["time_inicial"]);
+
+                            echo "<option value=\"".$key["id_isopened"]."\">".date("d/m/Y", strtotime($data[0]))."</option>";
+                        }?>
+                    </select>
+                </a>
             </div>
             <div class="modal-footer">
                 <button type="Reset" class="btn btn-secondary" data-dismiss="modal">Fechar</button>

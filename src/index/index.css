@@ -1,7 +1,14 @@
-
   .centers{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
+  .box{
+    background: #888888;
+    padding: 7%;
+    margin: 10% 3%;
+    border-radius: 10px;
+  }
+
