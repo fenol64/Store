@@ -33,27 +33,20 @@
   <?php
         include_once '../includes/conection.php';
 
-        function data($data){
-          return date("d/m/Y", strtotime($data));
-        }
+      $data = $_POST["dateReport"];
 
-        $datas = [
-          $_POST["inicial-Date"],
-          $_POST["final-Date"]
-        ];
+      
+      $con = getConnection();
 
-        $datas[0] = explode("T", $datas[0]);
-        $fdataInicial = data($datas[0][0]);
-        $datas[1] = explode("T", $datas[1]);
-        $fdataFinal = data($datas[1][0]);
-        $datas[0] = implode(" ", $datas[0]);
-        $datas[1] = implode(" ", $datas[1]);
+      $sql2 = "SELECT time_inicial FROM isopened WHERE id_isopened = '$data'";
+      $exe = $con->prepare($sql2);
+      $exe->execute();
+      $resultado = $exe->fetch();
 
-        $inicial =  $datas[0]. ":00";
-        $final = $datas[1]. ":00"; 
+      $day_data = explode(" ", $resultado[0]);
   ?>
 
-        <h1 class="mb-4">Relatorio do dia <?=$fdataInicial?> Até <?=$fdataFinal?></h1>
+        <h1 class="mb-4">Relatorio do dia: <?=date('d/m/Y', strtotime($day_data[0]))?></h1>
 
     
     <table class="text-center" id="table">
@@ -61,7 +54,7 @@
       
       $con = getConnection();
 
-      $sql = "SELECT * from orders WHERE day_inserted >= '$inicial' AND day_inserted <= '$final'";
+      $sql = "SELECT * from orders WHERE day_inserted = '$data'";
       $exec = $con->prepare($sql);
       $exec->execute();
       $result = $exec->fetchAll();

@@ -18,7 +18,7 @@
     $idorder = rand(10000, 100000);
     $_SESSION["id_order"] = $idorder;
 
-    $sql = "INSERT INTO orders VALUES ('$idorder', default, default, '".$result[0]."')";
+    $sql = "INSERT INTO orders VALUES ('$idorder', default, default, '".$result[0]."', default)";
     
     if ($con->exec($sql)) {
         // foi
@@ -67,7 +67,7 @@
                     $cont = 1;
                     foreach ($result as $value) {
                         echo "
-                            <button type=\"button\" class=\"btn btn-primary btn-lg\" onclick=\"addtocart(".$value["id_product"].", $idorder)\">".$value["name_product"]."</button>
+                            <button type=\"button\" class=\"btn btn-primary btn-lg mt-2 mb-2\" onclick=\"addtocart(".$value["id_product"].", $idorder)\">".$value["name_product"]."</button>
                         ";
                     }
                 

@@ -12,32 +12,13 @@
       include_once '../includes/conection.php';
       include_once '../includes/nav.php';
     ?>
-      <div class="centers">
+      <div class="centers row text-center">
         <a href="../orders/order.php" class="box bg-success text-white">
-          <h3>Nova Venda</h3>
+          <h2>Nova Venda</h2>
         </a>
         <a href="../Reports/day_report.php" class="box bg-secundary text-white">
-          <h3>Relatório do dia</h3>
+          <h2>Relatório do dia</h2>
         </a>
       </div>
-      
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script>
-      // kypress functions
-      var options = {
-        N: () => {
-          location.href = "../orders/order.php"
-        },
-      }
-      //keypress inputs
-      document.addEventListener('keydown', event => {
-        let keypressed = event.key.toUpperCase()
-        const location = options[keypressed]
-        if (location) {
-          location()  
-        }
-      })
-    </script>
   </body>
 </html>
