@@ -10,9 +10,6 @@
 </head>
 <body>
     <form class="form-signin" method="POST" action="receiveLoginData.php">
-        <div class="text-center">
-            <img class="mb-4 mx-auto" src="img/logo.png " alt="" width="150">
-        </div>
         <h1 class="h3 mb-3 font-weight-normal text-center">Faça o login</h1>
         <label for="inputEmail" class="sr-only">Endereço de E-mail</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="Endereço de E-mail" autocomplete="off" name="email" autofocus>
