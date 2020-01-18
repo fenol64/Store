@@ -21,8 +21,15 @@
         $sql2 = "INSERT INTO orderbody (id, id_order, name_product, value_product, status_order) VALUES (default, '$id_order', '$name', '$value', default)";
         $con->exec($sql2);
 
+        $con2 = getConnection();
+
+        $getorderBody = "SELECT id FROM orderbody WHERE id = (SELECT MAX(id) FROM orderbody)";
+        $exec = $con2->prepare($getorderBody);
+        $exec->execute();
+
+        $result[] = $exec->fetchAll();
+
         print_r(json_encode($result));
-        
     }
     
     function updatetotal($total, $id_order) {

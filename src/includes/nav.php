@@ -29,6 +29,9 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="../index/index.php">Painel</a>
                 </li>
+                <?php 
+                    if ($_SESSION['condicao'] == "0"):
+                ?>
                 <li class="nav-item dropdown ">
                     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Vendas
@@ -38,22 +41,13 @@
                             <i data-feather="shopping-cart" class="mr-3"></i>
                             Nova Venda
                         </a>
-                        <?php 
-                            if ($_SESSION['condicao'] == "0"):
-                        ?>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../Products/Products.php">
-                                <i data-feather="list" class="mr-3"></i> 
-                                Produtos
-                            </a>
-                        <?php
-                            endif;
-                        ?>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="../Products/Products.php">
+                            <i data-feather="list" class="mr-3"></i> 
+                            Produtos
+                        </a>
                     </div>
                 </li>
-                <?php 
-                    if ($_SESSION['condicao'] == "0"):
-                ?>
                 <li class="nav-item">
                     <a class="nav-link text-white" data-toggle="modal" data-target="#exampleModal">Relatório</a>
                 </li>
