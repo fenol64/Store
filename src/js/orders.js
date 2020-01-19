@@ -7,6 +7,13 @@ pay = document.getElementById('totalordertopay');
 
 function cancelProduct(idOrderProduct, id_order) {
 
+    var admin = prompt('Digite a senha do Administrador')
+
+    if (admin != 'admin') {
+        alert('Senha incorreta')
+        return
+    }
+
     let str = idOrderProduct + "item"
     let btn = document.getElementById(str)
     btn.setAttribute('disabled', "true")
@@ -75,8 +82,7 @@ function addtocart(id, id_order){
     }
 
     $.post( "./orderController.php", data , res => {  
-        data = JSON.parse(res)
-        render(data, id_order)
+        render(JSON.parse(res), id_order)
     });
 }
 
@@ -92,6 +98,14 @@ function updatetotal (total, id_order) {
 }
 
 function cancelorder(id_order) {
+
+    var admins = prompt('Digite a senha do Administrador')
+
+    if (admins != 'admin') {
+        alert('Senha errada')
+        return
+    }
+
     
     let data = {
         type: "cancel",
@@ -99,7 +113,8 @@ function cancelorder(id_order) {
     }
 
     if (confirm('Realmente deseja cancelar?')) {
-        $.post( "./orderController.php", data, res => {
+
+        $.post( "./orderController.php", data, () => {
             location.href = "../index/index.php"
         });       
     }
@@ -107,15 +122,13 @@ function cancelorder(id_order) {
 
 
 function submitorder(id_order) {
-    
     let data = {
         type: "submited",
         id_order
     }
 
-    $.post( "./orderController.php", data, res => {
+    $.post( "./orderController.php", data, () => {
         alert('Pedido feito com sucesso!')
         location.href = "../index/index.php"
     });       
-    
 }
