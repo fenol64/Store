@@ -64,7 +64,7 @@
     <th class=\"border-bottom\">$num_order</th>
     <th class=\"border-bottom\">".$result[$key]['status']."</th>
     <th class=\"border-bottom\">
-    <a href=\"../orders/detailOrder.php?id_order=".$result[$key]['id_order']."\">Ver detalhes <a></th>
+    <a href=\"./detailOrder.php?id_order=".$result[$key]['id_order']."\">Ver detalhes <a></th>
     </tr>
     ";
 

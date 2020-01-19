@@ -1,7 +1,7 @@
 <?php
     session_start();
 ?>
-<!DOCTYPE html><html lang="pt-br"><head><title>Império das pizzas | login </title>
+<!DOCTYPE html><html lang="pt-br"><head><title>Batata do chefii | login </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- css -->
