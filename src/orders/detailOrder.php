@@ -16,15 +16,12 @@
 <div class="main-container">
 <table class="text-center w-100">
     <?php
-
         include_once '../includes/conection.php';
 
         $id = $_GET["id_order"];
-
         echo "
             <h2 class=\"mb-3\">Detalhes da venda #$id</h2>
         ";
-
         $con = getConnection();
 
         $sql = "SELECT * FROM orders WHERE id_order = '$id'";
@@ -34,12 +31,8 @@
 
         $total = "";
         foreach ($result as $key => $value) {
-
             $total = $result[$key]['total'];
-
-
         }
-
         echo "
         <tr style=\"background: #cecece\">
             <th class=\"p-3\"> Produtos: </th>
@@ -68,10 +61,6 @@
             <td class=\"text-right mr-5\">$total</td>
         </tr>
     ";
-
-
-
-
     ?>
 </table>
 </div>

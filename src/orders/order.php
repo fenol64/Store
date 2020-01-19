@@ -2,9 +2,7 @@
     session_start();
     include_once '../includes/conection.php';
     //order insert
-
     $con = getConnection();
-
 
     $sql = "SELECT id_isopened FROM isopened WHERE id_isopened = (SELECT MAX(id_isopened) FROM isopened)";
     $stmt = $con->prepare($sql);
