@@ -5,14 +5,29 @@ total = 0.00
 cart = document.querySelector('#cart')
 pay = document.getElementById('totalordertopay');
 
-function cancelProduct(idOrderProduct) {
-    console.log(idOrderProduct)
+function cancelProduct(idOrderProduct, id_order) {
 
-    
+    let str = idOrderProduct + "item"
+    let btn = document.getElementById(str)
+    btn.setAttribute('disabled', "true")
+    btn.innerHTML = "cancelado"
 
+    data = {
+        type: 'cancelProduct',
+        id: idOrderProduct
+    }
 
+    $.post('./orderController.php', data, res => {
+        data = JSON.parse(res)
+        total -= parseFloat(data["value_product"])
+        updatetotal(total, id_order)
+        //insert to HTML
+        totalElement.value = total
+        pay.value = total
 
-
+        let Element = document.getElementById(idOrderProduct)
+        Element.classList.add('border-danger')
+    })
 }
 
 function render (product, id_order) {
@@ -25,6 +40,7 @@ function render (product, id_order) {
     pay.value = total
     let BoxElement =  document.createElement('div')
     BoxElement.setAttribute('class', 'p-3 pr-5 border m-3')
+    BoxElement.setAttribute('id', product[1][0][0])
     BoxElement.style.width = '100%'
     let productText = document.createTextNode(product[0]["name_product"])
 
@@ -34,13 +50,12 @@ function render (product, id_order) {
     let productvalue = document.createTextNode(product[0]["value_product"])
 
     let cancelElement = document.createElement('button')
-    cancelElement.setAttribute('class', 'text-right btn-sm   btn-danger')
-    cancelElement.setAttribute('onclick', 'cancelProduct('+product[1][0][0]+')')
-    cancelElement.setAttribute('id', product[1][0][0])
+    cancelElement.setAttribute('class', 'text-right btn-sm btn-danger')
+    cancelElement.setAttribute('id', product[1][0][0] + 'item')
+    cancelElement.setAttribute('onclick', 'cancelProduct('+product[1][0][0]+','+ id_order +')')
+    
     let textcencel = document.createTextNode('Cencelar')
     
-    cancelElement.onclick()
-
     BoxElement.appendChild(productText)
     cart.appendChild(BoxElement);
 
@@ -51,7 +66,7 @@ function render (product, id_order) {
     cancelElement.appendChild(textcencel)
 }
 
-async function addtocart(id, id_order){
+function addtocart(id, id_order){
     
     let data = {
         type: "insert",
@@ -59,9 +74,8 @@ async function addtocart(id, id_order){
         id_order
     }
 
-     await $.post( "./orderController.php", data , res => {  
+    $.post( "./orderController.php", data , res => {  
         data = JSON.parse(res)
-        console.log(data)
         render(data, id_order)
     });
 }
@@ -74,9 +88,7 @@ function updatetotal (total, id_order) {
         id_order
     }
 
-     $.post( "./orderController.php", data, res => {
-        console.log(res)
-     });
+     $.post( "./orderController.php", data);
 }
 
 function cancelorder(id_order) {

@@ -33,16 +33,11 @@
     }
     
     function updatetotal($total, $id_order) {
-
         $con = getConnection();
         $total = floatval($total);
         $query = "UPDATE orders SET total = '$total' WHERE id_order = '$id_order'";
         $stmt2 = $con->prepare($query);
-        if ($stmt2->execute()) {
-           echo "total atualizado";
-        }else{
-            echo "erro";
-        }
+        $stmt2->execute();
     }
 
     function updateorders($id_order, $type){
@@ -54,11 +49,30 @@
         $stmt2->execute();
 
 
-        $sql4 = "UPDATE orderbody SET status_order = '$type' WHERE id_order = '$id_order'";
+        $sql4 = "UPDATE orderbody SET status_order = '$type' WHERE id_order = '$id_order' AND status_order = 'pendente'";
         $stmt3 = $con->prepare($sql4);
         $stmt3->execute();
 
 
+    }
+
+    function cancelitemorder ($id_item) {
+        
+        $con = getConnection();
+
+
+        $sqls = "UPDATE orderbody SET status_order = 'cencel' WHERE id = '$id_item' AND status_order = 'pendente'";
+        $execs = $con->prepare($sqls);
+        $execs->execute();  
+
+        $querys = "SELECT * FROM orderbody WHERE id = '$id_item'";
+        $exec = $con->prepare($querys);
+        $exec->execute();
+
+        $resultados = $exec->fetch();
+
+        print_r(json_encode($resultados));
+    
     }
 
     switch ($_POST["type"]) {
@@ -73,6 +87,9 @@
             break;  
         case 'submited':
             updateorders($_POST["id_order"], $_POST["type"]); 
+            break;
+        case 'cancelProduct':
+            cancelitemorder($_POST["id"]);
             break;
     }
 
