@@ -17,9 +17,13 @@ function render(data) {
 
     let amount = totaltopayElement.value
 
-    if (data.method === 'cartao') {
-        data.method = 'Cartão'
-    }else{
+    console.log(data.method)
+
+    if (data.method === 'debito') {
+        data.method = 'Débito'
+    }else if (data.method === 'credito') {
+        data.method = 'Crédito'
+    }else if(data.method === 'dinheiro'){
         data.method = 'Dinheiro'
     }
 

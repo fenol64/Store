@@ -39,10 +39,13 @@
                 <div class="col pt-2 border-right">
                     <h4>Formas de pagamento</h4>
                     <button type="button" class="btn btn-primary" id="card" data-toggle="modal" data-target="#exampleModal">
-                        <i data-feather="credit-card"></i>
+                        Débito
+                    </button>
+                    <button type="button" class="btn btn-primary" id="money" data-toggle="modal" data-target="#exampleModal3">
+                        Crédito
                     </button>
                     <button type="button" class="btn btn-primary" id="money" data-toggle="modal" data-target="#exampleModal2">
-                        <i data-feather="dollar-sign"></i>
+                        Dinheiro
                     </button>
                 </div> 
                 <div class="col">
@@ -64,20 +67,20 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Pagamento com Cartão</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Pagamento com Cartão de débito</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         Digite o valor:
-                        <input type="text" id="cartao">
+                        <input type="text" id="debito">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="close mr-3" data-dismiss="modal">
                             <i data-feather="x"></i>
                         </button>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="addtomethods('cartao')">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="addtomethods('debito')">
                             <i data-feather="check"></i>
                         </button>
                     </div>
@@ -104,6 +107,32 @@
                             <i data-feather="x"></i>
                         </button>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="addtomethods('dinheiro')">
+                            <i data-feather="check"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Pagamento com cartão de Crédito</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Digite o valor:
+                        <input type="text" id="credito">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="close mr-3" data-dismiss="modal">
+                            <i data-feather="x"></i>
+                        </button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="addtomethods('credito')">
                             <i data-feather="check"></i>
                         </button>
                     </div>

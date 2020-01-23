@@ -4,10 +4,14 @@
     //order insert
     $con = getConnection();
 
-    $sql = "SELECT id_isopened FROM isopened WHERE id_isopened = (SELECT MAX(id_isopened) FROM isopened)";
+    $sql = "SELECT * FROM isopened WHERE id_isopened = (SELECT MAX(id_isopened) FROM isopened)";
     $stmt = $con->prepare($sql);
     $stmt->execute();
-    $result = $stmt->fetch();
+    $result = $stmt->fetchAll();
+
+    if ($result[0]['status'] == "fechado"){
+        header('Location: ../index/index.php');
+    }
 
     $_SESSION["time"] = $result[0];
 
@@ -16,7 +20,7 @@
     $idorder = rand(10000, 100000);
     $_SESSION["id_order"] = $idorder;
 
-    $sql = "INSERT INTO orders VALUES ('$idorder', default, default, '".$result[0]."', default)";
+    $sql = "INSERT INTO orders VALUES ('$idorder', default, default, '".$result[0][1]."', default)";
     
     if ($con->exec($sql)) {
         // foi
