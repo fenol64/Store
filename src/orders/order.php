@@ -8,19 +8,17 @@
     $stmt = $con->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll();
-
     if ($result[0]['status'] == "fechado"){
         header('Location: ../index/index.php');
     }
 
-    $_SESSION["time"] = $result[0];
 
     $con = getConnection();
 
     $idorder = rand(10000, 100000);
     $_SESSION["id_order"] = $idorder;
 
-    $sql = "INSERT INTO orders VALUES ('$idorder', default, default, '".$result[0][1]."', default)";
+    $sql = "INSERT INTO orders VALUES ('$idorder', default, default, '".$result[0]["id_isopened"]."', default, default)";
     
     if ($con->exec($sql)) {
         // foi
@@ -64,7 +62,7 @@
                     $sql = "SELECT * FROM products";
                     $stmt = $con->prepare($sql);
                     $stmt->execute();
-
+    
                     $result = $stmt->fetchAll();
                     $cont = 1;
                     foreach ($result as $value) {
