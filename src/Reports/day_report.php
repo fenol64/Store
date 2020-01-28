@@ -62,7 +62,7 @@
     <th class=\"border-bottom\">".$result[$key]['status']."</th>
     <th class=\"border-bottom\">$num_order</th>
     <th class=\"border-bottom\">
-    <a href=\"./detailOrder.php?id_order=".$result[$key]['id_order']."\"> detalhes <a></th>
+    <a href=\"./detailOrder.php?id_order=".$result[$key]['id_order']."&total=$num_order\"> detalhes <a></th>
     </tr>
     ";
 
