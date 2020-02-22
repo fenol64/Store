@@ -75,16 +75,10 @@ const getorders = () => {
     }
     
     $.post('./reportsController.php', data, res => {
-        loadorders(JSON.parse(res))
+        elementcancel.innerHTML = data[0]["cancelado"];
+        elementdone.innerHTML = data[0]["feito"]
+        totalelement.innerHTML = "Total vendido: R$" + data[0][2]
     });  
-}
-
-function loadorders(data) {
-    console.log(data)
-
-    elementcancel.innerHTML = data[0]["cancelado"];
-    elementdone.innerHTML = data[0]["feito"]
-    totalelement.innerHTML = "Total vendido: R$" + data[0][2]
 }
 
 getorders()

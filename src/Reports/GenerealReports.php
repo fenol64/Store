@@ -46,10 +46,21 @@
             </div>
             <div class="w-100"></div>
             <div class="col">
-            <h3 class="mt-4 border-bottom text-center">Financeiro</h3>
-            
-            
-            
+                <h3 class="mt-4 border-bottom text-center">Financeiro</h3>
+                <div class="main-box mt-4">
+                    <div class="box">
+                        <h5>Vendas com cartão de crédito</h5>
+                        <span id="cred">0</span>
+                    </div>
+                    <div class="box">
+                        <h5>Vendas com cartão de débito</h5>
+                        <span id="deb">0</span>
+                    </div> 
+                    <div class="box">
+                        <h5>Vendas com dinheiro</h5>
+                        <span id="din">0</span>
+                    </div> 
+                </div>
             </div>
         </div>
     </div>
