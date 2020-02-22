@@ -84,18 +84,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <form action="../Reports/reports.php" method="post">
+        <form action="../Reports/GenerealReports.php" method="post">
             <div class="modal-body">
                 <a class="mt-2 mb-2 d-block">
-                    Fechamento do dia: <select name="dateReport" id="dateReport" class="w-100">
-                        <option value="">Escolha uma data</option>
-                        <?php
-                        foreach ($resultado as $key) {
-                            $data = explode(" ", $key["time_inicial"]);
-
-                            echo "<option value=\"".$key["id_isopened"]."\">".date("d/m/Y", strtotime($data[0]))."</option>";
-                        }?>
-                    </select>
+                    Fechamento de quando dias atrás?
+                    <input type="number" class="w-100" name="day">
                 </a>
             </div>
             <div class="modal-footer">

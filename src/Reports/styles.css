@@ -1,0 +1,43 @@
+.container-test{
+    display: block;
+    margin: 0 auto;
+
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.height{
+    width: 800px;
+}
+
+.borda{
+    border: 1px solid #000;
+    border-radius: 20px;
+}
+
+.box{
+    display :flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    text-align: center;
+    width: 30%;
+    height: 150px;
+    border: 1px solid #cecece;
+    border-radius: 10px;
+}
+
+span{
+    font-size: 50px;
+}
+
+.main-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

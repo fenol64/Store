@@ -10,6 +10,7 @@
     $result = $stmt->fetchAll();
     if ($result[0]['status'] == "fechado"){
         header('Location: ../index/index.php');
+        die();
     }
 
 

@@ -61,7 +61,7 @@
         $con = getConnection();
 
 
-        $sqls = "UPDATE orderbody SET status_order = 'cencel' WHERE id = '$id_item' AND status_order = 'pendente'";
+        $sqls = "UPDATE orderbody SET status_order = 'cancel' WHERE id = '$id_item' AND status_order = 'pendente'";
         $execs = $con->prepare($sqls);
         $execs->execute();  
 

@@ -4,36 +4,74 @@
 
     class Reports {
 
-        public function sevenDaysReport() {
-            
+        public $products;
+        public $report;
+
+        function __construct() {
             $con = getConnection();
 
-            $stmt = $con->prepare("SELECT * FROM orders WHERE created_At BETWEEN current_date()-7 AND current_date()");
+            $stmt = $con->prepare("SELECT name_product FROM products");
             $stmt->execute();
 
             $result = $stmt->fetchAll();
 
-            $total = 0;
+            $this->products = $result;
+        }
 
-            for ($i=0; $i < count($result); $i++) { 
-                if ($result[$i]["status"] != "cancel") {
-                    $total += $result[$i]["total"];
-                }
+        public function SellsDaysReport($day) {
+            $cont = 0;
+            foreach ($this->products as $product) {
+
+
+                $con = getConnection();
+
+                $stmt = $con->prepare("SELECT count(name_product), name_product FROM orderbody WHERE status_order <> 'cancel' AND created_At BETWEEN current_date()-'$day' AND current_date() AND name_product = '$product[0]'  ");
+                $stmt->execute();
+                
+                $result = $stmt->fetchAll();
+                
+                $this->report[] = $result;  
+                
+                $cont++;
             }
 
-            $result[] = array(
-                "0" => $total,
-                "total" => $total
-            );
+            $this->report[] = $this->products;
+            
+            echo json_encode($this->report);
+        }
+
+        public function getamountorders($day){
+
+            $con = getConnection();
+            
+            $stmt = $con->prepare("SELECT COUNT(IF(status = 'submited', 1, null)) 'feito', COUNT(IF(status = 'cancel', 1, null)) 'cancelado', SUM(total) FROM orders WHERE created_At BETWEEN current_date()-'$day' AND current_date() AND status <> 'cancel'");
+            $stmt->execute();
+
+            $result = $stmt->fetchAll();
+
+            if ($result[0][2] == null) {
+                $result[0][2] = "0,00";
+            }else{
+                $result[0][2] = number_format($result[0][2], 2, ',', '.');
+            }
 
             echo json_encode($result);
-            
         }
     }
     
 
     $report = new Reports;
 
-    $report->sevenDaysReport();
+    $dia = $_POST["day"];
+  
+    $tipo = $_POST["type"]?$_POST["type"]:'[Não informado]';
+
+
+    if (isset($dia) && $tipo == 'products') {
+        $report->SellsDaysReport($dia);
+    }else{
+        $report->getamountorders($dia);
+    }
+    
 
 ?>
