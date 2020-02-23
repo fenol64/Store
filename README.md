@@ -29,10 +29,10 @@ This repository emulates a store and all functionalities that a web system has.
 
 ### Install
 
-run this code in main project path: 
+run this code in main project's path: 
 
 ``` 
-npm install bootstrap jquery popper.js feather-icons
+npm install bootstrap jquery popper.js feather-icons chartjs
 ```
 
 and download DomPDF on their main <a href="https://github.com/dompdf/dompdf">repository</a>: 
