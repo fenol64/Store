@@ -57,6 +57,21 @@
 
             echo json_encode($result);
         }
+
+
+
+        public function getpayment($day) {
+
+            $con = getConnection();
+
+            $stmt = $con->prepare("SELECT COUNT(IF(`method` = 'debito', 1, null)) 'debito', COUNT(IF(`method` = 'credito', 1, null)) 'credito', COUNT(IF(`method` = 'dinheiro', 1, null)) 'dinheiro' FROM `payment` WHERE created_At BETWEEN current_date()-'$day' AND current_date() AND status_order <> 'cancel'");
+            $stmt->execute();
+
+            $result = $stmt->fetchAll();
+
+            echo  json_encode($result);
+        }
+
     }
     
 
@@ -69,8 +84,10 @@
 
     if (isset($dia) && $tipo == 'products') {
         $report->SellsDaysReport($dia);
-    }else{
+    }else if (isset($dia) && $tipo == 'getorders') {
         $report->getamountorders($dia);
+    } else {
+        $report->getpayment($dia);
     }
     
 

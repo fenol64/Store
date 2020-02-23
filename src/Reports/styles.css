@@ -10,10 +10,6 @@
     align-items: center;
 }
 
-.height{
-    width: 800px;
-}
-
 .borda{
     border: 1px solid #000;
     border-radius: 20px;
@@ -27,7 +23,7 @@
     box-sizing: border-box;
     text-align: center;
     width: 30%;
-    height: 150px;
+    height: 200px;
     border: 1px solid #cecece;
     border-radius: 10px;
 }

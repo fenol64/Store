@@ -53,7 +53,9 @@
         $stmt3 = $con->prepare($sql4);
         $stmt3->execute();
 
-
+        $sql5 = "UPDATE payment SET status_order = '$type' WHERE id_order = '$id_order'";
+        $stmt4 = $con->prepare($sql5);
+        $stmt4->execute();
     }
 
     function cancelitemorder ($id_item) {

@@ -3,6 +3,9 @@ const ctx = canvas.getContext('2d')
 const elementcancel = document.getElementById('cancelorder')
 const elementdone = document.getElementById('doneorders')
 const totalelement = document.getElementById('total')
+const debitoElement = document.getElementById('deb')
+const creditoElement = document.getElementById('cred')
+const dinheiroElement = document.getElementById('din')
 
 
 const request = (day) => {
@@ -44,6 +47,8 @@ function loadData(data) {
         }
     }
 
+    
+    // Gráfico de produtos
     new Chart(ctx, {
         type: 'bar',
         data: {
@@ -66,19 +71,37 @@ function loadData(data) {
     });
 }
 
-// Gráfico de produtos
 
-const getorders = () => {
+
+const getorders = (day) => {
     let data = {
         type: "getorders",
         day
     }
     
     $.post('./reportsController.php', data, res => {
+        const data = JSON.parse(res)
         elementcancel.innerHTML = data[0]["cancelado"];
         elementdone.innerHTML = data[0]["feito"]
         totalelement.innerHTML = "Total vendido: R$" + data[0][2]
     });  
 }
 
-getorders()
+getorders(day)
+
+const getpayment = (day) => {
+    let data = {
+        type: "getpayment",
+        day
+    }
+
+    $.post('./reportsController.php', data, res => {
+        const data = JSON.parse(res)
+        debitoElement.innerHTML = data[0]['credito'] 
+        creditoElement.innerHTML = data[0]['debito']
+        dinheiroElement.innerHTML = data[0]['dinheiro']
+        
+    }); 
+}
+
+getpayment(day)

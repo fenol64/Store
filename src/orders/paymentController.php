@@ -9,7 +9,7 @@
 
     $con = getConnection();
 
-    $sql = "INSERT INTO payment VALUES (default, '$id_order', '$method', '$value')";
+    $sql = "INSERT INTO payment VALUES (default, '$id_order', '$method', '$value', default, default)";
     $exec = $con->prepare($sql);
     if ($exec->execute()) {
 
