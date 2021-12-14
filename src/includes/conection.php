@@ -3,7 +3,7 @@
 function getConnection(){
     $host = 'mysql:host=localhost;dbname=store';
     $user = 'root';
-    $pass = '';
+    $pass = '!sec@1234';
 
     try {
         $pdo = new PDO($host, $user, $pass);
